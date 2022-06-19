@@ -1,6 +1,9 @@
-<h1>
-    <strong>Books</strong>
-</h1>
+<body>
+    <% if flash[:alert] %>
+    　<p class="notice"><%= alert %></p>
+　　<% end %>
+
+<h1>Books</h1>
 
  <table>
    <thead>
@@ -12,7 +15,7 @@
     </thead>
 
     <tbody>
-      <% @books.each do |book| %>
+    <% @books.each do |book| %>
       <tr>
         <td><%= book.title %></td>
         <td><%= book.body %></td>
@@ -23,3 +26,23 @@
     <% end %>
     </tbody>
 </table>
+
+<h2>New Book</h2>
+
+<%= form_with model: @book do |f| %>
+
+ <div>
+     <label>Title</label>
+     <div class= "field"><%= f.text_field :title %></div>
+ </div>
+
+ <div>
+     <label>Body</label>
+     <div class= "field"><%= f.text_area :body %></div>
+ </div>
+
+ <div class= "field"><%= f.submit 'Create Book' %></div>
+
+<% end %>
+
+</body>
